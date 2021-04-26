@@ -8,17 +8,18 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
-import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
-import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
 /**
  * Node that instances meshes into a scenario.
+ *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * MeshInstance is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used to get 3D geometry rendered and can be used to instance a single [godot.Mesh] in many places. This allows to reuse geometry and save on resources. When a [godot.Mesh] has to be instanced more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance] instead.
  */
@@ -67,27 +68,11 @@ open class MeshInstance : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SKIN, NIL)
     }
 
-  open var softwareSkinningTransformNormals: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, NIL)
-    }
-
   override fun __new() {
     callConstructor(ENGINECLASS_MESHINSTANCE)
   }
 
   open fun _meshChanged() {
-  }
-
-  open fun _updateSkinning() {
   }
 
   /**
@@ -115,13 +100,6 @@ open class MeshInstance : GeometryInstance() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_TRIMESH_COLLISION, NIL)
-  }
-
-  open fun getActiveMaterial(surface: Long): Material? {
-    TransferContext.writeArguments(LONG to surface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_ACTIVE_MATERIAL,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
   /**

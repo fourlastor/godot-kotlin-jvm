@@ -24,14 +24,12 @@ import kotlin.Suppress
  * 2D sprite node in 3D world, that can use multiple 2D textures for animation.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/3.3/tutorials/2d/2d_sprite_animation.html)
  *
  * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
  */
 @GodotBaseType
 open class AnimatedSprite3D : SpriteBase3D() {
-  val animationFinished: Signal0 by signal()
-
   /**
    * Emitted when [frame] changed.
    */

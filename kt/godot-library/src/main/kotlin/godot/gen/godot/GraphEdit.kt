@@ -117,44 +117,6 @@ open class GraphEdit : Control() {
    */
   val scrollOffsetChanged: Signal1<Vector2> by signal("ofs")
 
-  open var minimapEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_ENABLED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_ENABLED,
-          NIL)
-    }
-
-  open var minimapOpacity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(value) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
-          NIL)
-    }
-
-  open var minimapSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(value) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_SIZE, NIL)
-    }
-
   /**
    * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
    */
@@ -233,13 +195,6 @@ open class GraphEdit : Control() {
   }
 
   @CoreTypeHelper
-  open fun minimapSize(schedule: Vector2.() -> Unit): Vector2 = minimapSize.apply{
-      schedule(this)
-      minimapSize = this
-  }
-
-
-  @CoreTypeHelper
   open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       schedule(this)
       scrollOffset = this
@@ -255,16 +210,7 @@ open class GraphEdit : Control() {
   open fun _graphNodeRaised(arg0: Node) {
   }
 
-  open fun _graphNodeSlotUpdated(arg0: Long, arg1: Node) {
-  }
-
   override fun _guiInput(event: InputEvent) {
-  }
-
-  open fun _minimapDraw() {
-  }
-
-  open fun _minimapToggled() {
   }
 
   open fun _scrollMoved(arg0: Double) {
@@ -369,7 +315,7 @@ open class GraphEdit : Control() {
   /**
    * Gets the [godot.HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph.
    *
-   * Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of it's children use their [godot.CanvasItem.visible] property instead.
+   * Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of its children, use their [godot.CanvasItem.visible] property instead.
    */
   open fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()

@@ -752,7 +752,7 @@ open class TextEdit : Control() {
   }
 
   /**
-   * Returns a [godot.String] text with the word under the mouse cursor location.
+   * Returns a [godot.String] text with the word under the caret (text cursor) location.
    */
   open fun getWordUnderCursor(): String {
     TransferContext.writeArguments()
@@ -793,26 +793,6 @@ open class TextEdit : Control() {
   open fun isLineHidden(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_HIDDEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  open fun isLineSetAsBookmark(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BOOKMARK,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  open fun isLineSetAsBreakpoint(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BREAKPOINT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  open fun isLineSetAsSafe(line: Long): Boolean {
-    TransferContext.writeArguments(LONG to line)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_SAFE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -916,28 +896,12 @@ open class TextEdit : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE, NIL)
   }
 
-  open fun setLineAsBookmark(line: Long, bookmark: Boolean) {
-    TransferContext.writeArguments(LONG to line, BOOL to bookmark)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BOOKMARK, NIL)
-  }
-
-  open fun setLineAsBreakpoint(line: Long, breakpoint: Boolean) {
-    TransferContext.writeArguments(LONG to line, BOOL to breakpoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BREAKPOINT,
-        NIL)
-  }
-
   /**
    * If `true`, hides the line of the specified index.
    */
   open fun setLineAsHidden(line: Long, enable: Boolean) {
     TransferContext.writeArguments(LONG to line, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_HIDDEN, NIL)
-  }
-
-  open fun setLineAsSafe(line: Long, safe: Boolean) {
-    TransferContext.writeArguments(LONG to line, BOOL to safe)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_SAFE, NIL)
   }
 
   /**

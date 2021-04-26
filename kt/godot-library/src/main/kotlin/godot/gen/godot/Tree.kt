@@ -284,12 +284,6 @@ open class Tree : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
-  open fun editSelected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
   /**
    * Makes the currently focused cell visible.
    *
@@ -353,7 +347,15 @@ open class Tree : Control() {
   }
 
   /**
-   * Returns the currently edited item. This is only available for custom cell mode.
+   * Returns the currently edited item. Can be used with [itemEdited] to get the item that was modified.
+   *
+   * ```
+   * 				func _ready():
+   * 				    $Tree.item_edited.connect(on_Tree_item_edited)
+   *
+   * 				func on_Tree_item_edited():
+   * 				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
+   * 				```
    */
   open fun getEdited(): TreeItem? {
     TransferContext.writeArguments()
@@ -362,7 +364,7 @@ open class Tree : Control() {
   }
 
   /**
-   * Returns the column for the currently edited item. This is only available for custom cell mode.
+   * Returns the column for the currently edited item.
    */
   open fun getEditedColumn(): Long {
     TransferContext.writeArguments()
@@ -450,11 +452,6 @@ open class Tree : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  open fun scrollToItem(item: Object) {
-    TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)
   }
 
   /**

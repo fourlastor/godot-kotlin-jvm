@@ -35,8 +35,7 @@ import kotlin.Unit
  * Creates a sub-view into the screen.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
- * [https://docs.godotengine.org/en/latest/tutorials/viewports/index.html](https://docs.godotengine.org/en/latest/tutorials/viewports/index.html)
+ * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
  *
  * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera 3D nodes will render on it too.
  *
@@ -124,17 +123,6 @@ open class Viewport : Node() {
           NIL)
     }
 
-  open var debanding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBANDING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBANDING, NIL)
-    }
-
   /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
@@ -163,17 +151,6 @@ open class Viewport : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
     }
 
-  open var fxaa: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FXAA, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FXAA, NIL)
-    }
-
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
@@ -191,7 +168,7 @@ open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport will not receive input event.
+   * If `true`, the viewport will not receive input events.
    */
   open var guiDisableInput: Boolean
     get() {
@@ -582,9 +559,6 @@ open class Viewport : Node() {
   }
 
   open fun _postGuiGrabClickFocus() {
-  }
-
-  open fun _processPicking(ignorePaused: Boolean) {
   }
 
   open fun _subwindowVisibilityChanged() {

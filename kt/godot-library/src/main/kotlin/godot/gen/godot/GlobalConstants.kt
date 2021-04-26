@@ -487,22 +487,10 @@ object GlobalConstants : Object() {
    */
   final const val JOY_BUTTON_15: Long = 15
 
-  final const val JOY_BUTTON_16: Long = 16
-
-  final const val JOY_BUTTON_17: Long = 17
-
-  final const val JOY_BUTTON_18: Long = 18
-
-  final const val JOY_BUTTON_19: Long = 19
-
   /**
    * Gamepad button 2.
    */
   final const val JOY_BUTTON_2: Long = 2
-
-  final const val JOY_BUTTON_20: Long = 20
-
-  final const val JOY_BUTTON_21: Long = 21
 
   /**
    * Gamepad button 3.
@@ -542,7 +530,7 @@ object GlobalConstants : Object() {
   /**
    * Represents the maximum number of joystick buttons supported.
    */
-  final const val JOY_BUTTON_MAX: Long = 22
+  final const val JOY_BUTTON_MAX: Long = 16
 
   /**
    * Gamepad DPad down.
@@ -604,8 +592,6 @@ object GlobalConstants : Object() {
    */
   final const val JOY_L3: Long = 8
 
-  final const val JOY_MISC1: Long = 16
-
   /**
    * A button on the right Oculus Touch controller, X button on the left controller (also when used in OpenVR).
    */
@@ -635,14 +621,6 @@ object GlobalConstants : Object() {
    * OpenVR touchpad Y axis (Joystick axis on Oculus Touch and Windows MR controllers).
    */
   final const val JOY_OPENVR_TOUCHPADY: Long = 1
-
-  final const val JOY_PADDLE1: Long = 17
-
-  final const val JOY_PADDLE2: Long = 18
-
-  final const val JOY_PADDLE3: Long = 19
-
-  final const val JOY_PADDLE4: Long = 20
 
   /**
    * Gamepad right Shoulder button.
@@ -688,8 +666,6 @@ object GlobalConstants : Object() {
    * Gamepad button Start.
    */
   final const val JOY_START: Long = 11
-
-  final const val JOY_TOUCHPAD: Long = 21
 
   /**
    * VR Controller analog grip (side buttons).
@@ -1499,7 +1475,7 @@ object GlobalConstants : Object() {
   /**
    * Command key mask. On macOS, this is equivalent to [KEY_MASK_META]. On other platforms, this is equivalent to [KEY_MASK_CTRL]. This mask should be preferred to [KEY_MASK_META] or [KEY_MASK_CTRL] for system shortcuts as it handles all platforms correctly.
    */
-  final const val KEY_MASK_CMD: Long = 268435456
+  final const val KEY_MASK_CMD: Long = 134217728
 
   /**
    * Ctrl key mask.
@@ -2094,10 +2070,10 @@ object GlobalConstants : Object() {
    * ```
    * 			var err = method_that_returns_error()
    * 			if err != OK:
-   * 			    print("Failure!)
+   * 			    print("Failure!")
    * 			# Or, equivalent:
    * 			if err:
-   * 			    print("Still failing!)
+   * 			    print("Still failing!")
    * 			```
    */
   final const val OK: Long = 0

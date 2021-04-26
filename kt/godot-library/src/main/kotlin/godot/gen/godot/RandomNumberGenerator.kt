@@ -29,13 +29,25 @@ import kotlin.Suppress
  * 		    rng.randomize()
  * 		    var my_random_number = rng.randf_range(-10.0, 10.0)
  * 		```
+ *
+ * **Note:** The default values of [seed] and [state] properties are pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
  */
 @GodotBaseType
 open class RandomNumberGenerator : Reference() {
   /**
-   * The seed used by the random number generator. A given seed will give a reproducible sequence of pseudo-random numbers.
+   * Initializes the random number generator state based on the given seed value. A given seed will give a reproducible sequence of pseudo-random numbers.
    *
    * **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.
+   *
+   * **Note:** Setting this property produces a side effect of changing the internal [state], so make sure to initialize the seed *before* modifying the [state]:
+   *
+   * ```
+   * 			var rng = RandomNumberGenerator.new()
+   * 			rng.seed = hash("Godot")
+   * 			rng.state = 100 # Restore to some previously saved state.
+   * 			```
+   *
+   * **Warning:** the getter of this property returns the previous [state], and not the initial seed value, which is going to be fixed in Godot 4.0.
    */
   open var seed: Long
     get() {
@@ -47,19 +59,6 @@ open class RandomNumberGenerator : Reference() {
     set(value) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_SEED,
-          NIL)
-    }
-
-  open var state: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(value) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_STATE,
           NIL)
     }
 

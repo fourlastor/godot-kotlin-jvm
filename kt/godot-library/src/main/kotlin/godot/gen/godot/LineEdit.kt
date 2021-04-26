@@ -421,12 +421,6 @@ open class LineEdit : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
   }
 
-  open fun getScrollOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
   /**
    * Executes a given action as defined in the [enum MenuItems] enum.
    */
